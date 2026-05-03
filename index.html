@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровой баланс | Красноярск</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🔋 Цифровой баланс</h1>
+            
+            <!-- Виджет погоды -->
+            <iframe 
+                src="https://weatherwidget.io/embed/?n=Krasnoyarsk&c=m&t=ffffff&tc=333333&vc=667eea&vcn=764ba2&ac=000000&acn=ffffff&af=1&aj=1" 
+                width="200" 
+                height="300">
+            </iframe>
+        </header>
+
+        <p class="subtitle">Ты управляешь телефоном или он тобой?</p>
+
+        <section>
+            <h2>⚠️ Проблема</h2>
+            <ul>
+                <li>📱 <strong>150 раз в день</strong> — берёшь телефон</li>
+                <li>😰 <strong>68% людей</strong> паникуют без телефона</li>
+                <li>🎮 <strong>Зависимость</strong> как от азартных игр</li>
+            </ul>
+
+            <h2>✅ Решение</h2>
+            <ol>
+                <li><strong>Утро без экрана</strong> — первые 30 минут</li>
+                <li><strong>Ночной режим</strong> — за час до сна</li>
+                <li><strong>Зоны без телефона</strong> — еда, ванная</li>
+                <li><strong>Отключи уведомления</strong> — только важное</li>
+            </ol>
+        </section>
+
+        <!-- Карта с Домом-музеем Астафьева -->
+        <section class="map-section">
+            <h2>📍 Культурное место Красноярска</h2>
+            <p class="map-desc">Дом-музей В.П. Астафьева — отличное место для прогулки без телефона!</p>
+            
+            <div class="map-container">
+                <div style="position:relative;overflow:hidden;">
+                    <a href="https://yandex.ru/maps/org/dom_muzey_v_p_astafyeva/108607546390/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Дом-музей В.П. Астафьева</a>
+                    <a href="https://yandex.ru/maps/11309/krasnoyarsk-krai/category/museum/184105894/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Музей в Красноярском крае</a>
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=92.572978%2C55.960668&mode=poi&poi%5Bpoint%5D=92.573113%2C55.960673&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D108607546390&z=20.2" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <div class="tracker">
+            <h3>⏱️ Время в телефоне</h3>
+            <input type="range" id="time" min="0" max="12" value="4" step="0.5">
+            <div class="result">
+                <span id="val">4</span> часа — <span id="emoji">😐</span>
+            </div>
+            <p id="text">Нормально</p>
+        </div>
+
+        <footer>
+            <p>Красноярск, 2026 | Отключайся от телефона — подключайся к жизни!</p>
+        </footer>
+    </div>
+
+    <script>
+        const slider = document.getElementById('time');
+        const val = document.getElementById('val');
+        const emoji = document.getElementById('emoji');
+        const text = document.getElementById('text');
+
+        const data = [
+            { max: 2, e: '🌟', t: 'Отлично!' },
+            { max: 4, e: '😊', t: 'Хорошо' },
+            { max: 6, e: '😐', t: 'Нормально' },
+            { max: 8, e: '😟', t: 'Многовато' },
+            { max: 12, e: '😰', t: 'Очень много!' }
+        ];
+
+        slider.addEventListener('input', function() {
+            const v = parseFloat(this.value);
+            val.textContent = v;
+            const d = data.find(x => v <= x.max);
+            emoji.textContent = d.e;
+            text.textContent = d.t;
+        });
+    </script>
+</body>
+</html>
